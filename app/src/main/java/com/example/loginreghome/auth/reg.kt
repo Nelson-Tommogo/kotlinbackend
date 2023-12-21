@@ -1,4 +1,5 @@
 package com.example.loginreghome.auth
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -6,7 +7,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,14 +15,11 @@ import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpScreen(navController: NavHostController, onSignup: (String, String, String, String) -> Unit){
+fun SignUpScreen(navController: NavHostController, onSignup: (String, String) -> Unit) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
-
-    val scope = rememberCoroutineScope()
-    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -67,8 +64,11 @@ fun SignUpScreen(navController: NavHostController, onSignup: (String, String, St
 
         Button(
             onClick = {
-                // Add validation logic here before calling onSignUpClick
-                onSignUpClick(username, password)
+                // Add your signup logic here
+                onSignup(username, password)
+
+                // Navigate to the login screen
+                navController.navigate("login") // Replace "login" with your actual login route
             },
             enabled = !isLoading,
             modifier = Modifier
@@ -80,11 +80,9 @@ fun SignUpScreen(navController: NavHostController, onSignup: (String, String, St
     }
 }
 
-
-
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun SignUpScreenPreview{
-    SignUpScreen(onSignUpClick = )
+fun signUpPreview() {
+    val navController = rememberNavController()
+    SignUpScreen(navController = navController, onSignup = { s, s2 -> })
 }
-
