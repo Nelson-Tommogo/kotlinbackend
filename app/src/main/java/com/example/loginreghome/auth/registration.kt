@@ -29,7 +29,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
@@ -38,7 +37,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -47,7 +45,7 @@ import com.example.loginreghome.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignupScreen(navController: NavHostController, onSignup: (String, String, String, String) -> Unit) {
+fun registration(navController: NavHostController, onSignup: (String, String, String, String) -> Unit) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -258,9 +256,3 @@ fun SignupScreen(navController: NavHostController, onSignup: (String, String, St
     }
 }
 
-@Preview
-@Composable
-fun signUpPreview() {
-    val navController = rememberNavController()
-    SignupScreen(navController = navController, onSignup = {s, s2, s3, s4 ->  } )
-}
